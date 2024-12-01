@@ -7,23 +7,52 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import smartosc.jsc.applications.etl.mo_add_columns.AddColumnsExecuter;
+import smartosc.jsc.applications.etl.mo_rename_columns.RenameColumnsExecuter;
+import smartosc.jsc.applications.etl.mo_remove_columns.RemoveColumnsExecuter;
+import smartosc.jsc.applications.etl.mo_concat_columns.ConcatColumnsExcuter;
 
 public class App {
 
     public static void main(String[] args) {
-        String dataset = "[{\"name\": \"AnNM1\", \"gender\": \"Male\"}]";
+        String dataset = "[{\"name\": \"KhaiTD\", \"gender\": \"Male\"}]";
         // @TODO The params should be extracted from the request
-        String addColumns1 = "[{\"column\": \"email\", \"value\": \"annm1@smartosc.com\"}]";
-        String addColumns2 = "[{\"column\": \"age\", \"value\": \"11\"}]";
+        String addColumns = "[{\"column\": \"email\", \"value\": \"khaitd@smartosc.com\"},{\"column\": \"age\", \"value\": \"11\"}]";
+        String renameColumns = "[{\"oldColumnName\": \"email\", \"newColumnName\": \"email_address\"},{\"oldColumnName\": \"age\", \"newColumnName\": \"years_old\"}]";
+        String concatColumns = "[{\"columnAfterConcat\": \"new_concat_column\", \"columns\": [\"name\", \"gender\"]}]";
+        String removeColumns = "[\"gender\"]";
         ObjectMapper mapper = new ObjectMapper();
         try {
             JsonNode jsonDataset = mapper.readTree(dataset);
 
             AddColumnsExecuter addColumnsExecuter = new AddColumnsExecuter();
+            RenameColumnsExecuter renameColumnsExecuter = new RenameColumnsExecuter();
+            ConcatColumnsExcuter concatColumnsExcuter = new ConcatColumnsExcuter();
+            RemoveColumnsExecuter removeColumnsExecuter = new RemoveColumnsExecuter();
+
             // @TODO Factory pattern will be used to create the executer
-            JsonNode returnData1 = addColumnsExecuter.execute(addColumns1, jsonDataset);
-            JsonNode returnData2 = addColumnsExecuter.execute(addColumns2, returnData1);
-            String updatedJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData2);
+
+            //Add column
+            JsonNode returnDataAddColumn = addColumnsExecuter.execute(addColumns, jsonDataset);
+            String updatedJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataAddColumn);
+            System.out.println("-----------Data After Add Column--------------");
+            System.out.println(updatedJson);
+
+            //Rename Column
+            JsonNode returnDataRenameColumn = renameColumnsExecuter.execute(renameColumns, returnDataAddColumn);
+            updatedJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRenameColumn);
+            System.out.println("-----------Data After Rename Column--------------");
+            System.out.println(updatedJson);
+
+            //Concat Column
+            JsonNode returnDataconcatColumn = concatColumnsExcuter.execute(concatColumns, returnDataAddColumn);
+            updatedJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataconcatColumn);
+            System.out.println("-----------Data After Concat Column--------------");
+            System.out.println(updatedJson);
+
+            //Remove Column
+            JsonNode returnDataRemoveColumn = removeColumnsExecuter.execute(removeColumns, returnDataAddColumn);
+            updatedJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRemoveColumn);
+            System.out.println("-----------Data After Remove Column--------------");
             System.out.println(updatedJson);
         } catch (Exception e) {
             e.printStackTrace();
