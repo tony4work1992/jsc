@@ -19,6 +19,11 @@ public class RemoveColumnsParamsExtractor implements NodeParamsExtractor<List<St
         if (convertedParams.isEmpty()) {
             throw new RuntimeException("Parameters are empty");
         }
+        for (String column : convertedParams) {
+            if (column.isEmpty()) {
+                throw new RuntimeException("Parameters are empty");
+            }
+        }
 
         return convertedParams;
 

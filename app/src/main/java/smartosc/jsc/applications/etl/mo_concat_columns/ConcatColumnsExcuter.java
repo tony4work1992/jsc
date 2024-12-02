@@ -21,7 +21,7 @@ public class ConcatColumnsExcuter implements Executable {
         if (!returnData.isArray()) {
             throw new RuntimeException("Data is not an array");
         }
-
+        
         for (ColumnModel concatColumn : concatColumns) {
             for (JsonNode item : returnData) {
                 if (!item.isObject()) {
@@ -29,6 +29,9 @@ public class ConcatColumnsExcuter implements Executable {
                 }
                 StringBuilder concatenatedValue = new StringBuilder();
                 for (String column : concatColumn.getColumns()) {
+                    if(!item.has(column)){
+                        throw new RuntimeException("Column not isset : " + column);
+                    }
                     String value = item.get(column).toString();
                     concatenatedValue.append(value != null ? value.replace("\"", "") : "");
                 }

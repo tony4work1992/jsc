@@ -27,6 +27,9 @@ public class RenameColumnsExecuter implements Executable {
                 if (!item.isObject()) {
                     throw new RuntimeException("Data is invalid.");
                 }
+                if(!item.has(column.getOldColumnName())){
+                    throw new RuntimeException("Column not isset : " + column.getOldColumnName());
+                }
                 // Set value for New Column
                 ((ObjectNode) item).set(column.getNewColumnName(), item.get(column.getOldColumnName()));
                 //Remove old column

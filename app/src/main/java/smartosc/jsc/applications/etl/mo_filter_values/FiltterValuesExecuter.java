@@ -17,13 +17,15 @@ public class FiltterValuesExecuter implements Executable {
         if (!dataset.isArray()) {
             throw new RuntimeException("Data set is invalid");
         }
-
         ArrayNode filteredArrayNode = new ArrayNode(null);
         for (JsonNode item : dataset) {
             Boolean isApplyCondition = true;
             for (ColumnModel condition : filterConditions) {
                 if (!item.isObject()) {
                     throw new RuntimeException("Data item is not an object");
+                }
+                if(!item.has(condition.getColumnName())){
+                    throw new RuntimeException("Column not isset : " + condition.getColumnName());
                 }
                 String columnValue = item.get(condition.getColumnName()).toString();
                 columnValue = columnValue.replace("\"", "");

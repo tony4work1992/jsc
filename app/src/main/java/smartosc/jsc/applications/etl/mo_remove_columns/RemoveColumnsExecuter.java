@@ -26,6 +26,9 @@ public class RemoveColumnsExecuter implements Executable {
                 if (!item.isObject()) {
                     throw new RuntimeException("Data is invalid.");
                 }
+                if(!item.has(column)){
+                    throw new RuntimeException("Column not isset : " + column);
+                }
                 ((ObjectNode) item).remove(column);
             }
         }
