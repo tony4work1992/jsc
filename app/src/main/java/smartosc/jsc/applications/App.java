@@ -60,27 +60,27 @@ public class App {
             String updatedJsonRemoveSuccess = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRemoveSuccess);
             System.out.println("Remove column success" + updatedJsonRemoveSuccess);
 //
-            JsonNode returnDataRemoveFailed = removeColumnsExecuter.execute(removeColumnsFailed, jsonDataset);
-            String updatedJsonRemoveFailed = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRemoveFailed);
-            System.out.println(updatedJsonRemoveFailed);
+//            JsonNode returnDataRemoveFailed = removeColumnsExecuter.execute(removeColumnsFailed, jsonDataset);
+//            String updatedJsonRemoveFailed = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRemoveFailed);
+//            System.out.println(updatedJsonRemoveFailed);
 
             // rename columns
             JsonNode returnDataRenameSuccess = renameColumnsExecuter.execute(renameColumnsSuccess, jsonDataset);
             String updatedJsonRenameSuccess = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRenameSuccess);
             System.out.println("Rename column success" +updatedJsonRenameSuccess);
 
-            JsonNode returnDataRenameFailed = renameColumnsExecuter.execute(renameColumnsFailed, jsonDataset);
-            String updatedJsonRenameFailed = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRenameFailed);
-            System.out.println(updatedJsonRenameFailed);
+//            JsonNode returnDataRenameFailed = renameColumnsExecuter.execute(renameColumnsFailed, jsonDataset);
+//            String updatedJsonRenameFailed = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRenameFailed);
+//            System.out.println(updatedJsonRenameFailed);
 
             // concat columns
             JsonNode returnDataConcatSuccess = concatColumnsExecuter.execute(concatColumnsSuccess, jsonDataset);
             String updatedJsonConcatSuccess = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataConcatSuccess);
             System.out.println("Concat column success" +updatedJsonConcatSuccess);
 //
-            JsonNode returnDataConcatFailed = concatColumnsExecuter.execute(concatColumnsFailed, jsonDataset);
-            String updatedJsonConcatFailed = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataConcatFailed);
-            System.out.println(updatedJsonConcatFailed);
+//            JsonNode returnDataConcatFailed = concatColumnsExecuter.execute(concatColumnsFailed, jsonDataset);
+//            String updatedJsonConcatFailed = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataConcatFailed);
+//            System.out.println(updatedJsonConcatFailed);
 //
 //            // filter columns
             JsonNode returnDataFilterSuccess = filterExecuter.execute(filterColumnsSuccess, jsonDataset);
