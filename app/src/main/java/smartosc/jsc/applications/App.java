@@ -7,17 +7,19 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import smartosc.jsc.applications.etl.mo_add_columns.AddColumnsExecuter;
+import smartosc.jsc.applications.etl.mo_remove_colums.RemoveColumnsExecuter;
 import smartosc.jsc.applications.etl.mo_rename_columns.RenameColumnsExecuter;
 
 public class App {
 
     public static void main(String[] args) {
-        String dataset = "[{\"name\": \"Nghianht\", \"gender\": \"Male\"}]";
+        String dataset = "[{\"name\": \"Nghianht\", \"gender\": \"Male\", \"address\": \"Hanoi\", \"country\": \"Vietnam\"}]";
         // @TODO The params should be extracted from the request
         String addColumns1 = "[{\"column\": \"email\", \"value\": \"nghianht@smartosc.com\"}]";
         String addColumns2 = "[{\"column\": \"age\", \"value\": \"28\"}]";
-        String renameColumns = "[{\"oldColumnName\": \"email1\", \"newColumnName\": \"emp_email\"}," +
+        String renameColumns = "[{\"oldColumnName\": \"email\", \"newColumnName\": \"emp_email\"}," +
                 "{\"oldColumnName\": \"age\", \"newColumnName\": \"emp_age\"}]";
+        String removeColumns = "[\"address\",\"country\"]";
         ObjectMapper mapper = new ObjectMapper();
         try {
             JsonNode jsonDataset = mapper.readTree(dataset);
@@ -33,10 +35,18 @@ public class App {
 
             //Rename columns
             RenameColumnsExecuter renameColumnsExecuter = new RenameColumnsExecuter();
-            JsonNode dataAfterRename = renameColumnsExecuter.execute(renameColumns, returnData);
-            String renameDataJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataAfterRename);
+            returnData = renameColumnsExecuter.execute(renameColumns, returnData);
+            String renameDataJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData);
             System.out.println("Result after rename columns:");
             System.out.println(renameDataJson);
+            System.out.println("-------------------------");
+
+            //Remove columns
+            RemoveColumnsExecuter removeColumnsExecuter = new RemoveColumnsExecuter();
+            returnData = removeColumnsExecuter.execute(removeColumns, returnData);
+            String removeDataJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData);
+            System.out.println("Result after remove columns:");
+            System.out.println(removeDataJson);
             System.out.println("-------------------------");
         } catch (Exception e) {
             e.printStackTrace();
