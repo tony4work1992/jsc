@@ -8,20 +8,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import smartosc.jsc.applications.etl.mo_add_columns.AddColumnsExecuter;
 import smartosc.jsc.applications.etl.mo_concat_columns.ConcatColumnsExecuter;
+import smartosc.jsc.applications.etl.mo_filter_columns.FilterColumnsExecuter;
 import smartosc.jsc.applications.etl.mo_remove_colums.RemoveColumnsExecuter;
 import smartosc.jsc.applications.etl.mo_rename_columns.RenameColumnsExecuter;
 
 public class App {
 
     public static void main(String[] args) {
-        String dataset = "[{\"name\": \"Nghianht\", \"gender\": \"Male\", \"address\": \"Hanoi\", \"country\": \"Vietnam\"}]";
-        // @TODO The params should be extracted from the request
+        String dataset = "[{\"name\": \"Nghianht\", \"gender\": \"Male\", \"address\": \"Hanoi\", \"country\": \"Vietnam\"}," +
+                "{\"name\": \"Nghinv\", \"gender\": \"Male\", \"address\": \"Hcm\", \"country\": \"Vietnam\"}]";
         String addColumns1 = "[{\"column\": \"email\", \"value\": \"nghianht@smartosc.com\"}]";
         String addColumns2 = "[{\"column\": \"age\", \"value\": \"28\"}]";
         String renameColumns = "[{\"oldColumnName\": \"email\", \"newColumnName\": \"emp_email\"}," +
                 "{\"oldColumnName\": \"age\", \"newColumnName\": \"emp_age\"}]";
         String removeColumns = "[\"address\",\"country\"]";
         String concatColumns = "[{\"concatColumnName\": \"gender_age\", \"concatColumns\": [\"gender\",\"emp_age\"]}]";
+        String filterColumns = "[{\"column\": \"name\", \"condition\": \"like\", \"value\": \"nghin\"}]";
         ObjectMapper mapper = new ObjectMapper();
         try {
             JsonNode jsonDataset = mapper.readTree(dataset);
@@ -57,6 +59,14 @@ public class App {
             String concatDataJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData);
             System.out.println("Result after concat columns:");
             System.out.println(concatDataJson);
+            System.out.println("-------------------------");
+
+            //Filter columns
+            FilterColumnsExecuter filterColumnsExecuter = new FilterColumnsExecuter();
+            returnData = filterColumnsExecuter.execute(filterColumns, returnData);
+            String filterDataJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData);
+            System.out.println("Result after filter columns:");
+            System.out.println(filterDataJson);
             System.out.println("-------------------------");
         } catch (Exception e) {
             e.printStackTrace();
