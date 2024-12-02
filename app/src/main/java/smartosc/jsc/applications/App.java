@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import smartosc.jsc.applications.etl.mo_add_columns.AddColumnsExecuter;
+import smartosc.jsc.applications.etl.mo_concat_columns.ConcatColumnsExecuter;
 import smartosc.jsc.applications.etl.mo_remove_colums.RemoveColumnsExecuter;
 import smartosc.jsc.applications.etl.mo_rename_columns.RenameColumnsExecuter;
 
@@ -20,6 +21,7 @@ public class App {
         String renameColumns = "[{\"oldColumnName\": \"email\", \"newColumnName\": \"emp_email\"}," +
                 "{\"oldColumnName\": \"age\", \"newColumnName\": \"emp_age\"}]";
         String removeColumns = "[\"address\",\"country\"]";
+        String concatColumns = "[{\"concatColumnName\": \"gender_age\", \"concatColumns\": [\"gender\",\"emp_age\"]}]";
         ObjectMapper mapper = new ObjectMapper();
         try {
             JsonNode jsonDataset = mapper.readTree(dataset);
@@ -47,6 +49,14 @@ public class App {
             String removeDataJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData);
             System.out.println("Result after remove columns:");
             System.out.println(removeDataJson);
+            System.out.println("-------------------------");
+
+            //Concat columns
+            ConcatColumnsExecuter concatColumnsExecuter = new ConcatColumnsExecuter();
+            returnData = concatColumnsExecuter.execute(concatColumns, returnData);
+            String concatDataJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData);
+            System.out.println("Result after concat columns:");
+            System.out.println(concatDataJson);
             System.out.println("-------------------------");
         } catch (Exception e) {
             e.printStackTrace();
