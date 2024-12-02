@@ -18,7 +18,7 @@ public class App {
         String dataset = "[{\"name\": \"KhaiTD\", \"gender\": \"Male\", \"age\" : 18},{\"name\": \"KhaiTD2\", \"gender\": \"Male\",\"age\" : 26},{\"name\": \"NAME3\", \"gender\": \"Male\",\"age\" : 30}]";
         // @TODO The params should be extracted from the request
         String addColumns = "[{\"column\": \"email\", \"value\": \"khaitd@smartosc.com\"},{\"column\": \"company\", \"value\": \"SmartOSC\"}]";
-        String renameColumns = "[{\"oldColumnName\": \"email\", \"newColumnName\": \"email_address\"},{\"oldColumnName\": \"age\", \"newColumnName\": \"years_old\"}]";
+        String renameColumns = "[{\"oldColumnName\": \"email\", \"newColumnName\": \"email_address\"}]";
         String concatColumns = "[{\"columnAfterConcat\": \"new_concat_column\", \"columns\": [\"name\", \"company\"]}]";
         String removeColumns = "[\"gender\"]";
         String filterValues = "[{\"columnName\" :\"age\", \"condition\":\">\", \"value\":19},{\"columnName\" :\"name\", \"condition\":\"startsWith\", \"value\":\"KhaiTD2\"}]";
@@ -47,19 +47,19 @@ public class App {
             System.out.println(updatedJson);
 
             //Concat Column
-            JsonNode returnDataconcatColumn = concatColumnsExcuter.execute(concatColumns, returnDataAddColumn);
+            JsonNode returnDataconcatColumn = concatColumnsExcuter.execute(concatColumns, returnDataRenameColumn);
             updatedJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataconcatColumn);
             System.out.println("-----------Data After Concat Column--------------");
             System.out.println(updatedJson);
 
             //Remove Column
-            JsonNode returnDataRemoveColumn = removeColumnsExecuter.execute(removeColumns, returnDataAddColumn);
+            JsonNode returnDataRemoveColumn = removeColumnsExecuter.execute(removeColumns, returnDataconcatColumn);
             updatedJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRemoveColumn);
             System.out.println("-----------Data After Remove Column--------------");
             System.out.println(updatedJson);
 
             //Filter Value Columns
-            JsonNode returnDataFilterColumn = filtterValuesExecuter.execute(filterValues, jsonDataset);
+            JsonNode returnDataFilterColumn = filtterValuesExecuter.execute(filterValues, returnDataRemoveColumn);
             updatedJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataFilterColumn);
             System.out.println("-----------Data After Filter Value--------------");
             System.out.println(updatedJson);
