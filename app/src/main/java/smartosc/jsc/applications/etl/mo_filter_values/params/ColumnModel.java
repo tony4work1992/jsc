@@ -1,10 +1,10 @@
-package smartosc.jsc.applications.etl.mo_filter_columns.params;
+package smartosc.jsc.applications.etl.mo_filter_values.params;
 
 import lombok.Data;
 
 @Data
 public class ColumnModel {
     private String columnName;
-    private String codition;
+    private String condition;
     private String value;
 }

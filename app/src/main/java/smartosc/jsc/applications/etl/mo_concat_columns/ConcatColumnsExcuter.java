@@ -27,13 +27,12 @@ public class ConcatColumnsExcuter implements Executable {
                 if (!item.isObject()) {
                     throw new RuntimeException("Data is invalid.");
                 }
-                
-                String concatValue = "";
-
+                StringBuilder concatenatedValue = new StringBuilder();
                 for (String column : concatColumn.getColumns()) {
-                    concatValue += item.get(column).asText() + " ";
+                    String value = item.get(column).toString();
+                    concatenatedValue.append(value != null ? value.replace("\"", "") : "");
                 }
-                ((ObjectNode) item).put(concatColumn.getColumnAfterConcat(), concatValue);          
+                ((ObjectNode) item).put(concatColumn.getColumnAfterConcat(), concatenatedValue.toString());
             }
         }
 
