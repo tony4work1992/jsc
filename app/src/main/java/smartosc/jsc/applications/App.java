@@ -6,70 +6,81 @@ package smartosc.jsc.applications;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import smartosc.jsc.applications.etl.mo_add_columns.AddColumnsExecuter;
-import smartosc.jsc.applications.etl.mo_concat_columns.ConcatColumnsExecuter;
-import smartosc.jsc.applications.etl.mo_filter_columns.FilterColumnsExecuter;
-import smartosc.jsc.applications.etl.mo_remove_colums.RemoveColumnsExecuter;
-import smartosc.jsc.applications.etl.mo_rename_columns.RenameColumnsExecuter;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import smartosc.jsc.applications.etl.ba_base.ExecuterFactory;
+import smartosc.jsc.applications.etl.ba_nodes.Executable;
+
+import java.io.File;
+import java.util.Iterator;
+import java.util.Objects;
 
 public class App {
 
     public static void main(String[] args) {
-        String dataset = "[{\"name\": \"Nghianht\", \"gender\": \"Male\", \"address\": \"Hanoi\", \"country\": \"Vietnam\"}," +
-                "{\"name\": \"Nghinv\", \"gender\": \"Male\", \"address\": \"Hcm\", \"country\": \"Vietnam\"}]";
-        String addColumns1 = "[{\"column\": \"email\", \"value\": \"nghianht@smartosc.com\"}]";
-        String addColumns2 = "[{\"column\": \"age\", \"value\": \"28\"}]";
-        String renameColumns = "[{\"oldColumnName\": \"email\", \"newColumnName\": \"emp_email\"}," +
-                "{\"oldColumnName\": \"age\", \"newColumnName\": \"emp_age\"}]";
-        String removeColumns = "[\"address\",\"country\"]";
-        String concatColumns = "[{\"concatColumnName\": \"gender_age\", \"concatColumns\": [\"gender\",\"emp_age\"]}]";
-        String filterColumns = "[{\"column\": \"name\", \"condition\": \"like\", \"value\": \"nghin\"}]";
         ObjectMapper mapper = new ObjectMapper();
+        ObjectNode nodeResults = mapper.createObjectNode();
         try {
-            JsonNode jsonDataset = mapper.readTree(dataset);
+            JsonNode config = mapper.readTree(new File("app/src/main/java/smartosc/jsc/applications/input/config.json"));
+            JsonNode nodes = config.get("nodes");
+            for (JsonNode node : nodes) {
+                int id = node.path("id").asInt();
+                String name = node.path("name").asText();
+                String params = node.path("config").asText();
+                Executable module = ExecuterFactory.getExecuter(name);
+                JsonNode parentIds = node.get("parent");
+                JsonNode result;
+                if (node.has("parent") && !node.get("parent").isNull()) {
+                    if (parentIds.size() == 1) {
+                        result = module.execute(params, nodeResults.get(String.valueOf(parentIds.get(0))));
+                    } else {
+                        ObjectNode parentData = mapper.createObjectNode();
+                        for (JsonNode parentId : parentIds) {
+                            parentData.set(parentId.asText(), nodeResults.get(parentId.asText()));
+                        }
+                        result = module.execute(params, parentData);
+                    }
+                } else {
+                    result = module.execute(params, null);
+                }
+                nodeResults.set(String.valueOf(id), result);
+            }
+            System.out.println("---------Final Result---------");
+            printJsonAsTable(nodeResults.get("8"));
+            System.out.println("------------------------");
 
-            //Add columns
-            AddColumnsExecuter addColumnsExecuter = new AddColumnsExecuter();
-            JsonNode returnData = addColumnsExecuter.execute(addColumns1, jsonDataset);
-            returnData = addColumnsExecuter.execute(addColumns2, returnData);
-            String updatedJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData);
-            System.out.println("Result after add columns:");
-            System.out.println(updatedJson);
-            System.out.println("-------------------------");
-
-            //Rename columns
-            RenameColumnsExecuter renameColumnsExecuter = new RenameColumnsExecuter();
-            returnData = renameColumnsExecuter.execute(renameColumns, returnData);
-            String renameDataJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData);
-            System.out.println("Result after rename columns:");
-            System.out.println(renameDataJson);
-            System.out.println("-------------------------");
-
-            //Remove columns
-            RemoveColumnsExecuter removeColumnsExecuter = new RemoveColumnsExecuter();
-            returnData = removeColumnsExecuter.execute(removeColumns, returnData);
-            String removeDataJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData);
-            System.out.println("Result after remove columns:");
-            System.out.println(removeDataJson);
-            System.out.println("-------------------------");
-
-            //Concat columns
-            ConcatColumnsExecuter concatColumnsExecuter = new ConcatColumnsExecuter();
-            returnData = concatColumnsExecuter.execute(concatColumns, returnData);
-            String concatDataJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData);
-            System.out.println("Result after concat columns:");
-            System.out.println(concatDataJson);
-            System.out.println("-------------------------");
-
-            //Filter columns
-            FilterColumnsExecuter filterColumnsExecuter = new FilterColumnsExecuter();
-            returnData = filterColumnsExecuter.execute(filterColumns, returnData);
-            String filterDataJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnData);
-            System.out.println("Result after filter columns:");
-            System.out.println(filterDataJson);
-            System.out.println("-------------------------");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    public static void printJsonAsTable(JsonNode nodes) {
+        if (nodes.isArray()) {
+            JsonNode firstNode = nodes.get(0);
+            if (firstNode != null) {
+                StringBuilder header = new StringBuilder();
+                Iterator<String> fields = firstNode.fieldNames();
+                while (fields.hasNext()) {
+                    String key = fields.next();
+                    if(Objects.equals(key, "sku_country")){
+                        continue;
+                    }
+                    header.append(String.format("%-25s", key));
+                }
+                System.out.println(header.toString());
+
+                // Print rows
+                for (JsonNode node : nodes) {
+                    StringBuilder row = new StringBuilder();
+                    Iterator<String> fieldsRow = node.fieldNames();
+                    while (fieldsRow.hasNext()) {
+                        String key = fieldsRow.next();
+                        if(Objects.equals(key, "sku_country")){
+                            continue;
+                        }
+                        row.append(String.format("%-25s", node.get(key).asText()));
+                    }
+                    System.out.println(row.toString());
+                }
+            }
         }
     }
 }

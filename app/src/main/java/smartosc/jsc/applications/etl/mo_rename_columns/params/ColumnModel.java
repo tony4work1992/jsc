@@ -6,4 +6,20 @@ import lombok.Data;
 public class ColumnModel {
     private String oldColumnName;
     private String newColumnName;
+
+    public String getOldColumnName() {
+        return oldColumnName;
+    }
+
+    public void setOldColumnName(String oldColumnName) {
+        this.oldColumnName = oldColumnName;
+    }
+
+    public String getNewColumnName() {
+        return newColumnName;
+    }
+
+    public void setNewColumnName(String newColumnName) {
+        this.newColumnName = newColumnName;
+    }
 }

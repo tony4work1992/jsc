@@ -44,7 +44,7 @@ public class FilterColumnsExecuter implements Executable {
 
     private boolean filterData(String columnValue, String condition, String compareValue){
         switch(condition) {
-            case "like":
+            case "contains":
                 columnValue = columnValue.toLowerCase();
                 compareValue = compareValue.toLowerCase();
                 return columnValue.contains(compareValue);
