@@ -1,0 +1,325 @@
+[ {
+    "sku" : "EXAM.SKU.01",
+    "width" : "120",
+    "height" : "40",
+    "category" : "TIVI",
+    "country" : "VN",
+    "name" : "Smart Tivi 4K",
+    "sku_country" : "Smart Tivi 4KVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.02",
+    "width" : "120",
+    "height" : "40",
+    "category" : "TIVI",
+    "country" : "VN",
+    "name" : "Smart Tivi 4K Untra Width",
+    "sku_country" : "Smart Tivi 4K Untra WidthVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.03",
+    "width" : "120",
+    "height" : "40",
+    "category" : "TIVI",
+    "country" : "VN",
+    "name" : "Smart Tivi 2K",
+    "sku_country" : "Smart Tivi 2KVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.04",
+    "width" : "120",
+    "height" : "40",
+    "category" : "TIVI",
+    "country" : "VN",
+    "name" : "Smart Tivi 2K Untra Width",
+    "sku_country" : "Smart Tivi 2K Untra WidthVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.05",
+    "width" : "120",
+    "height" : "40",
+    "category" : "TIVI",
+    "country" : "VN",
+    "name" : "Smart Tivi 8K",
+    "sku_country" : "Smart Tivi 8KVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.06",
+    "width" : "120",
+    "height" : "40",
+    "category" : "TIVI",
+    "country" : "VN",
+    "name" : "Smart Tivi 8K Untra Width",
+    "sku_country" : "Smart Tivi 8K Untra WidthVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.07",
+    "width" : "20",
+    "height" : "30",
+    "category" : "Projector",
+    "country" : "VN",
+    "name" : "Projector 4K",
+    "sku_country" : "Projector 4KVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.08",
+    "width" : "20",
+    "height" : "30",
+    "category" : "Projector",
+    "country" : "VN",
+    "name" : "Projector 4K Untra Width",
+    "sku_country" : "Projector 4K Untra WidthVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.09",
+    "width" : "20",
+    "height" : "30",
+    "category" : "Projector",
+    "country" : "VN",
+    "name" : "Projector 2K",
+    "sku_country" : "Projector 2KVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.10",
+    "width" : "20",
+    "height" : "30",
+    "category" : "Projector",
+    "country" : "VN",
+    "name" : "Projector 2K Untra Width",
+    "sku_country" : "Projector 2K Untra WidthVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.11",
+    "width" : "20",
+    "height" : "30",
+    "category" : "Projector",
+    "country" : "VN",
+    "name" : "Projector 8K",
+    "sku_country" : "Projector 8KVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.12",
+    "width" : "20",
+    "height" : "30",
+    "category" : "Projector",
+    "country" : "VN",
+    "name" : "Projector 8K Untra Width",
+    "sku_country" : "Projector 8K Untra WidthVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.14",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "UK",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AUK",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.16",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "UK",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AUK",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.17",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.18",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.19",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.20",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.21",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.22",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "Y"
+  }, {
+    "sku" : "EXAM.SKU.02",
+    "width" : "120",
+    "height" : "40",
+    "category" : "TIVI",
+    "country" : "VN",
+    "name" : "Smart Tivi 4K Untra Width",
+    "sku_country" : "Smart Tivi 4K Untra WidthVN",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.04",
+    "width" : "120",
+    "height" : "40",
+    "category" : "TIVI",
+    "country" : "VN",
+    "name" : "Smart Tivi 2K Untra Width",
+    "sku_country" : "Smart Tivi 2K Untra WidthVN",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.06",
+    "width" : "120",
+    "height" : "40",
+    "category" : "TIVI",
+    "country" : "VN",
+    "name" : "Smart Tivi 8K Untra Width",
+    "sku_country" : "Smart Tivi 8K Untra WidthVN",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.08",
+    "width" : "20",
+    "height" : "30",
+    "category" : "Projector",
+    "country" : "VN",
+    "name" : "Projector 4K Untra Width",
+    "sku_country" : "Projector 4K Untra WidthVN",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.10",
+    "width" : "20",
+    "height" : "30",
+    "category" : "Projector",
+    "country" : "VN",
+    "name" : "Projector 2K Untra Width",
+    "sku_country" : "Projector 2K Untra WidthVN",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.12",
+    "width" : "20",
+    "height" : "30",
+    "category" : "Projector",
+    "country" : "VN",
+    "name" : "Projector 8K Untra Width",
+    "sku_country" : "Projector 8K Untra WidthVN",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.13",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "UK",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AUK",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.14",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "UK",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AUK",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.15",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "UK",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AUK",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.16",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "UK",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AUK",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.17",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.18",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.19",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.20",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.21",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "N"
+  }, {
+    "sku" : "EXAM.SKU.22",
+    "width" : "140",
+    "height" : "15",
+    "category" : "Soundbar",
+    "country" : "VN",
+    "name" : "Soundbar Bluetooth A",
+    "sku_country" : "Soundbar Bluetooth AVN",
+    "salable" : "N"
+  } ]
