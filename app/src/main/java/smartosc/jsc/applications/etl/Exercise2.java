@@ -35,7 +35,6 @@ public class Exercise2 implements ExerciseInterface {
 
                 if (!nodeName.isEmpty()) {
                     String jsonString = objectMapper.writeValueAsString(params);
-                    System.out.println(jsonString);
                     JsonNode result = baseExecute.execute(nodeName, jsonString, parentData, returnResult);
                     returnResult.put(id, result);
                 }

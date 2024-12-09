@@ -137,7 +137,7 @@ public class App {
             Exercise2 exercise2 = new Exercise2();
             Map<Integer, JsonNode> resultExercise2 = exercise2.execute(jsonData);
 
-            String updatedJson2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(resultExercise2.get(7));
+            String updatedJson2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(resultExercise2.get(8));
             System.out.println(updatedJson2);
             System.out.println("\n\n==================== END HOMEWORK 2 ====================");
         } catch (Exception e) {

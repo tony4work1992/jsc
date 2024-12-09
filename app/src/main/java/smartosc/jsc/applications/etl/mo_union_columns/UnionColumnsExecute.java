@@ -25,15 +25,26 @@ public class UnionColumnsExecute implements Executable {
         List<ColumnModel> nodes = extractor.extractParams(params);
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode returnData = mapper.createArrayNode();
-        ArrayNode data = (ArrayNode) dataset;
+
         for (ColumnModel node : nodes) {
             String nodeIds = node.getNodeIds();
             String[] ids = nodeIds.split(",");
 
-            for (String id : ids) {
-                int nodeId = Integer.parseInt(id);
-                if (data.has(nodeId)) {
-                    returnData.addAll((ArrayNode) result.get(nodeId));
+            JsonNode jsonNodes0 = result.get(Integer.parseInt(ids[0]));
+            JsonNode jsonNodes1 = result.get(Integer.parseInt(ids[1]));
+            if (!jsonNodes0.isEmpty() && !jsonNodes1.isEmpty()) {
+                for (JsonNode jsonNode0 : jsonNodes0) {
+                    JsonNode returnAdd = jsonNode0;
+                    for (JsonNode jsonNode1 : jsonNodes1) {
+                        int idNode0 = Integer.parseInt(jsonNode0.get("id").asText());
+                        int idNode1 = Integer.parseInt(jsonNode1.get("id").asText());
+
+                        if (idNode0 == idNode1) {
+                            returnAdd = jsonNode1;
+                            break;
+                        }
+                    }
+                    returnData.add(returnAdd);
                 }
             }
         }

@@ -1,9 +1,5 @@
 package smartosc.jsc.applications.etl.ba_nodes;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
-import java.util.ArrayList;
-
 public final class Utils {
 
     private Utils() {

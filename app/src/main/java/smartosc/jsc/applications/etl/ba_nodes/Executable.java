@@ -10,5 +10,4 @@ public interface Executable {
      * Execute the logics of the ETL node
      */
     public JsonNode execute(String params, JsonNode data) throws Exception;
-
 }
