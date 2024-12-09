@@ -40,7 +40,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "etl.app.App"
+    mainClass = "smartosc.jsc.applications.App"
 }
 
 tasks.named<Test>("test") {
