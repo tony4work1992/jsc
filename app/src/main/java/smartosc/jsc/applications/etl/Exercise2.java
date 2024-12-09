@@ -12,12 +12,11 @@ import java.util.Map;
 
 public class Exercise2 implements ExerciseInterface {
     @Override
-    public Map<Integer, JsonNode> execute(String requestData, String jsonData) throws Exception {
+    public Map<Integer, JsonNode> execute(String jsonData) throws Exception {
         ExecuteFactory executeFactory = new ExecuteFactory();
         BaseExecute baseExecute = new BaseExecute(executeFactory);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode dataSet = objectMapper.readTree(requestData);
         JsonNode nodes = objectMapper.readTree(jsonData);
         JsonNode parentData = objectMapper.createObjectNode();
         Map<Integer, JsonNode> returnResult = new HashMap<>();
@@ -32,17 +31,13 @@ public class Exercise2 implements ExerciseInterface {
                     ArrayNode parentNodeIds = (ArrayNode) node.get("parent");
                     Integer parentNodeId = parentNodeIds.get(0).asInt();
                     parentData = returnResult.get(parentNodeId);
-
-                    System.out.println(parentData);
                 }
 
                 if (!nodeName.isEmpty()) {
                     String jsonString = objectMapper.writeValueAsString(params);
                     System.out.println(jsonString);
-//                    continue;
                     JsonNode result = baseExecute.execute(nodeName, jsonString, parentData, returnResult);
-//
-//                    returnResult.put(id, result);
+                    returnResult.put(id, result);
                 }
             }
         }

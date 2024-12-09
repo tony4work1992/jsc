@@ -31,7 +31,7 @@ public class UnionColumnsExecute implements Executable {
             String[] ids = nodeIds.split(",");
 
             for (String id : ids) {
-                Integer nodeId = Integer.parseInt(id);
+                int nodeId = Integer.parseInt(id);
                 if (data.has(nodeId)) {
                     returnData.addAll((ArrayNode) result.get(nodeId));
                 }

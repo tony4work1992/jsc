@@ -132,14 +132,13 @@ public class App {
         try {
             System.out.println("\n\n==================== START HOMEWORK 2 ====================");
             ObjectMapper mapper2 = new ObjectMapper();
-            String dataset2 = Constants.DATASET2;
             String jsonData = Constants.NODES;
 
             Exercise2 exercise2 = new Exercise2();
-            Map<Integer, JsonNode> resultExercise2 = exercise2.execute(dataset2, jsonData);
+            Map<Integer, JsonNode> resultExercise2 = exercise2.execute(jsonData);
 
             String updatedJson2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(resultExercise2.get(7));
-//            System.out.println(updatedJson2);
+            System.out.println(updatedJson2);
             System.out.println("\n\n==================== END HOMEWORK 2 ====================");
         } catch (Exception e) {
             e.printStackTrace();
