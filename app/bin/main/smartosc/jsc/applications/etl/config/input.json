@@ -1,0 +1,85 @@
+[
+  {
+    "option": "loadData",
+    "input": {
+      "id": 0,
+      "config": null,
+      "children": [
+        1
+      ],
+      "parent": null
+    }
+  },
+  {
+    "option": "rename",
+    "input": {
+      "id": 1,
+      "config": [{"columnToRename":"title","columnRenameTo":"name"}],
+      "children": [2],
+      "parent": [0]
+    }
+  },
+  {
+    "option": "concat",
+    "input": {
+      "id": 2,
+      "config": [{"newColumnName":"sku_country","columns":["name","country"]}],
+      "children":  [3],
+      "parent": [1]
+    }
+  },
+  {
+    "option": "remove",
+    "input": {
+      "id": 3,
+      "config": [{"columns":["image"]}],
+      "children":  [4,5],
+      "parent": [2]
+    }
+  },
+  {
+    "option": "filter",
+    "input": {
+      "id": 4,
+      "config": [{"column":"country","operator":"=","value":"VN"}],
+      "children":  [6],
+      "parent": [3]
+    }
+  },
+  {
+    "option": "filter",
+    "input": {
+      "id": 5,
+      "config": [{"column":"category","operator":"=","value":"Soundbar"}],
+      "children":  [7],
+      "parent": [3]
+    }
+  },
+  {
+    "option": "add",
+    "input": {
+      "id": 6,
+      "config": [{"column":"salable","value":"Y"}],
+      "children":  [],
+      "parent": [4]
+    }
+  },
+  {
+    "option": "add",
+    "input": {
+      "id": 7,
+      "config": [{"column":"salable","value":"N"}],
+      "children":  [],
+      "parent": [5]
+    }
+  },
+  {
+    "option": "union",
+    "input": {
+      "id": 8,
+      "config": null,
+      "children":  [],
+      "parent": [6,7]
+    }
+  }
+]

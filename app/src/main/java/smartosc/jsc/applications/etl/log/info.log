@@ -1,0 +1,20 @@
+Dec 02, 2024 5:12:07 PM smartosc.jsc.applications.etl.module.ba_nodes.Log logToFile
+INFO: Start execute Filter
+Dec 02, 2024 5:12:07 PM smartosc.jsc.applications.etl.module.ba_nodes.Log logToFile
+INFO: Param: [{"column":"title","operator":"contains","value":"fugiat"},{"column":"userId","operator":"=","value":1}]
+Dec 02, 2024 5:12:07 PM smartosc.jsc.applications.etl.module.ba_nodes.Log logToFile
+INFO: Dataset count before execute:200
+Dec 02, 2024 5:12:07 PM smartosc.jsc.applications.etl.module.ba_nodes.Log logToFile
+INFO: End execute Filter
+Dec 02, 2024 5:12:07 PM smartosc.jsc.applications.etl.module.ba_nodes.Log logToFile
+INFO: Dataset count after execute:1
+Dec 02, 2024 5:14:32 PM smartosc.jsc.applications.etl.module.ba_nodes.Log logToFile
+INFO: Start execute Filter
+Dec 02, 2024 5:14:32 PM smartosc.jsc.applications.etl.module.ba_nodes.Log logToFile
+INFO: Param: [{"column":"title","operator":"contains","value":"quis"},{"column":"userId","operator":"=","value":1}]
+Dec 02, 2024 5:14:32 PM smartosc.jsc.applications.etl.module.ba_nodes.Log logToFile
+INFO: Dataset count before execute:200
+Dec 02, 2024 5:14:32 PM smartosc.jsc.applications.etl.module.ba_nodes.Log logToFile
+INFO: End execute Filter
+Dec 02, 2024 5:14:32 PM smartosc.jsc.applications.etl.module.ba_nodes.Log logToFile
+INFO: Dataset count after execute:1
