@@ -6,5 +6,4 @@ import lombok.Data;
 public class ColumnModel {
     private String currentColumn;
     private String newColumn;
-
 }

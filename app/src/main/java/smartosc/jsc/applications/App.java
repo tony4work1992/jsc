@@ -7,6 +7,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import smartosc.jsc.applications.etl.ba_factory.ExecuterFactory;
+import smartosc.jsc.applications.etl.ba_factory.constants.EtlConstant;
+import smartosc.jsc.applications.etl.ba_nodes.Executable;
 import smartosc.jsc.applications.etl.mo_add_columns.AddColumnsExecuter;
 import smartosc.jsc.applications.etl.mo_concat_columns.ConcatColumnsExecuter;
 import smartosc.jsc.applications.etl.mo_filter_params.FilterExecuter;
@@ -17,76 +21,46 @@ import smartosc.jsc.applications.etl.utils.seed_data.Person;
 import smartosc.jsc.applications.etl.utils.seed_data.SeedData;
 
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class App {
 
     public static void main(String[] args) {
-        List<Person> dataset = SeedData.generateSeedData();
-
-
-        String addColumnsSuccess = "[{\"column\": \"status\", \"value\": \"Active\"}]";
-
-        String removeColumnsSuccess = "[{\"column\": \"gender\"}]";
-        String removeColumnsFailed = "[{\"column\": \"gender_failed\"}]";
-
-        String renameColumnsSuccess = "[{\"currentColumn\": \"name\", \"newColumn\": \"full_name\"}]";
-        String renameColumnsFailed = "[{\"currentColumn\": \"name_failed\", \"newColumn\": \"full_name\"}]";
-
-        String concatColumnsSuccess = "[{\"currentColumns\": [\"name\",\"age\"], \"newColumn\": \"info\"}]";
-        String concatColumnsFailed = "[{\"currentColumns\": [\"name\",\"age_failed\"], \"newColumn\": \"info\"}]";
-
-        String filterColumnsSuccess = "[{\"column\": \"age\", \"value\": \"25\", \"operator\": \"=\"}]";
-        String filterColumnsFailed = "[{\"column\": \"age_failed\", \"value\": \"25\", \"operator\": \"=\"}]";
-
-        ObjectMapper mapper = new ObjectMapper();
-        System.out.println(dataset);
+        final String inputData = "[{\"sku\":\"EXAM.SKU.01\",\"title\":\"Smart Tivi 4K\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.02\",\"title\":\"Smart Tivi 4K Untra Width\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.03\",\"title\":\"Smart Tivi 2K\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.04\",\"title\":\"Smart Tivi 2K Untra Width\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.05\",\"title\":\"Smart Tivi 8K\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.06\",\"title\":\"Smart Tivi 8K Untra Width\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.07\",\"title\":\"Projector 4K\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.08\",\"title\":\"Projector 4K Untra Width\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.09\",\"title\":\"Projector 2K\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.10\",\"title\":\"Projector 2K Untra Width\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.11\",\"title\":\"Projector 8K\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.12\",\"title\":\"Projector 8K Untra Width\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.13\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"UK\"},{\"sku\":\"EXAM.SKU.14\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"UK\"},{\"sku\":\"EXAM.SKU.15\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"UK\"},{\"sku\":\"EXAM.SKU.16\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"UK\"},{\"sku\":\"EXAM.SKU.17\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.18\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.19\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.20\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.21\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.22\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"}]";
+        final String configData = "{\"0\":{\"id\":0,\"name\":\"LoadData\",\"config\":" + inputData +",\"children\":[1],\"parent\":null},\"1\":{\"id\":1,\"name\":\"RenameColumns\",\"config\":[{\"currentColumn\":\"title\",\"newColumn\":\"name\"}],\"children\":[2],\"parent\":[0]},\"2\":{\"id\":2,\"name\":\"Concat\",\"config\":[{\"newColumn\":\"sku_country\",\"currentColumns\":[\"name\",\"country\"]}],\"children\":[3],\"parent\":[1]},\"3\":{\"id\":3,\"name\":\"Remove\",\"config\":[{\"column\":\"image\"}],\"children\":[4,5],\"parent\":[2]},\"4\":{\"id\":4,\"name\":\"Filter\",\"config\":[{\"column\":\"country\",\"operator\":\"=\",\"value\":\"VN\"}],\"children\":[],\"parent\":[3]},\"5\":{\"id\":5,\"name\":\"Filter\",\"config\":[{\"column\":\"category\",\"operator\":\"=\",\"value\":\"Soundbar\"}],\"children\":[],\"parent\":[3]},\"6\":{\"id\":6,\"name\":\"AddColumns\",\"config\":[{\"column\":\"salable\",\"value\":\"Y\"}],\"children\":[],\"parent\":[4]},\"7\":{\"id\":7,\"name\":\"AddColumns\",\"config\":[{\"column\":\"salable\",\"value\":\"N\"}],\"children\":[],\"parent\":[5]},\"8\":{\"id\":8,\"name\":\"Union\",\"config\":[{\"ids\":\"6,7\"}],\"children\":[],\"parent\":[6,7]}}";
         try {
-            JsonNode jsonDataset = mapper.readTree(dataset.toString());
+            ExecuterFactory executerFactory = new ExecuterFactory();
+            ObjectMapper mapper = new ObjectMapper();
 
-            AddColumnsExecuter addColumnsExecuter = new AddColumnsExecuter();
-            RemoveColumnsExecuter removeColumnsExecuter = new RemoveColumnsExecuter();
-            ConcatColumnsExecuter concatColumnsExecuter = new ConcatColumnsExecuter();
-            RenameColumnsExecuter renameColumnsExecuter = new RenameColumnsExecuter();
-            FilterExecuter filterExecuter = new FilterExecuter();
+            ObjectNode objectNodeData = mapper.createObjectNode();
+            Executable loadDataExecuter = executerFactory.getExecuter(EtlConstant.LOAD_DATA_EXECUTER);
+            JsonNode configNodes = loadDataExecuter.execute(configData, null);
+            for (JsonNode item : configNodes) {
+                if (!item.isObject()) {
+                    throw new RuntimeException("Data item is not an object");
+                }
+                String nodeId = item.get("id").asText();
+                String nodeName = item.get("name").asText();
+                String nodeConfig = item.get("config").toString();
+                JsonNode nodeParentIds = item.get("parent");
+                JsonNode data;
+                Executable executer = executerFactory.getExecuter(nodeName);
+                if (!nodeName.equals(EtlConstant.UNION_EXECUTER)) {
+                    JsonNode jsonDataset = null;
+                    for (JsonNode parentId : nodeParentIds) {
+                        jsonDataset = objectNodeData.get(parentId.asText());
+                    }
+                    data = executer.execute(nodeConfig, jsonDataset);
+                } else {
+                    data = executer.execute(nodeConfig, objectNodeData);
+                }
+                objectNodeData.put(nodeId, data);
+            }
 
-//            // add columns
-            JsonNode returnDataAddColumn = addColumnsExecuter.execute(addColumnsSuccess, jsonDataset);
-            String updatedJsonAddColumn = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataAddColumn);
-            System.out.println("Add column success" + updatedJsonAddColumn);
-//
-            // remove columns
-            JsonNode returnDataRemoveSuccess = removeColumnsExecuter.execute(removeColumnsSuccess, jsonDataset);
-            String updatedJsonRemoveSuccess = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRemoveSuccess);
-            System.out.println("Remove column success" + updatedJsonRemoveSuccess);
-//
-//            JsonNode returnDataRemoveFailed = removeColumnsExecuter.execute(removeColumnsFailed, jsonDataset);
-//            String updatedJsonRemoveFailed = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRemoveFailed);
-//            System.out.println(updatedJsonRemoveFailed);
-
-            // rename columns
-            JsonNode returnDataRenameSuccess = renameColumnsExecuter.execute(renameColumnsSuccess, jsonDataset);
-            String updatedJsonRenameSuccess = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRenameSuccess);
-            System.out.println("Rename column success" +updatedJsonRenameSuccess);
-
-//            JsonNode returnDataRenameFailed = renameColumnsExecuter.execute(renameColumnsFailed, jsonDataset);
-//            String updatedJsonRenameFailed = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataRenameFailed);
-//            System.out.println(updatedJsonRenameFailed);
-
-            // concat columns
-            JsonNode returnDataConcatSuccess = concatColumnsExecuter.execute(concatColumnsSuccess, jsonDataset);
-            String updatedJsonConcatSuccess = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataConcatSuccess);
-            System.out.println("Concat column success" +updatedJsonConcatSuccess);
-//
-//            JsonNode returnDataConcatFailed = concatColumnsExecuter.execute(concatColumnsFailed, jsonDataset);
-//            String updatedJsonConcatFailed = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataConcatFailed);
-//            System.out.println(updatedJsonConcatFailed);
-//
-//            // filter columns
-            JsonNode returnDataFilterSuccess = filterExecuter.execute(filterColumnsSuccess, jsonDataset);
-            String updatedJsonFilterSuccess = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnDataFilterSuccess);
-            System.out.println("Filter column success" +updatedJsonFilterSuccess);
-
+            String result = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNodeData.get("8"));
+            System.out.println(result);
 
         } catch (Exception e) {
             e.printStackTrace();

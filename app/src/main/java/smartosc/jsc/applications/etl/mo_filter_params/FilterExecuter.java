@@ -17,7 +17,6 @@ public class FilterExecuter implements Executable {
             List<ColumnModel> filterConditions = extractor.extractParams(params);
 
             JsonNode returnDataClone = dataset.deepCopy();
-            JsonNode returnData = dataset.deepCopy();
 
 
             if (!returnDataClone.isArray()) {
@@ -28,12 +27,13 @@ public class FilterExecuter implements Executable {
                 for (int i = 0; i < returnDataClone.size(); i++) {
                     Boolean isValid = checkCondition(returnDataClone.get(i), filterCondition);
                     if (!isValid) {
-                        ((ArrayNode) returnData).remove(i);
+                        ((ArrayNode) returnDataClone).remove(i);
+                        i--;
                     }
                 }
 
             }
-            return returnData;
+            return returnDataClone;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
