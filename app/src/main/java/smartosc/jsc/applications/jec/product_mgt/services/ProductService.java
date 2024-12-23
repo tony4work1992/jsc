@@ -39,7 +39,6 @@ public class ProductService {
         if (productId == null) {
             throw new IllegalArgumentException("Product ID cannot be null");
         }
-        System.out.println("Fetching details for product ID: " + productId);
         FileProcessingService fileService = new FileProcessingService();
 
         List<Map<String, String>> productList = fileService.readCsvWithHeaders(SOURCE);

@@ -47,6 +47,7 @@ public class CartService {
         PromotionService promoService = new PromotionService();
         List<Integer> promoIdsInCart = new ArrayList<>();
         double amount = cart.getAmount();
+        System.out.println("Amount before promotion: " + amount);
 
         for (Integer promotionId : promotionIds) {
             Promotion promotion = promoService.getPromotionDetail(promotionId);
@@ -60,9 +61,11 @@ public class CartService {
                 amount -= amount * promotion.getDiscountAmount() / 100;
             }
         }
-        cart.setAmount(Math.round(amount * 100.0) / 100.0);
+        amount = Math.round(amount * 100.0) / 100.0;
+        cart.setAmount(amount);
         cart.setPromotionIds(promoIdsInCart);
         System.out.println("Applied promotions");
+        System.out.println("Amount after promotions: " + amount);
         return cart;
     }
 }
