@@ -19,7 +19,6 @@ public class ProductService {
         if (categoryId == null) {
             throw new IllegalArgumentException("Category ID cannot be null");
         }
-        System.out.println("Fetching products for category ID: " + categoryId);
 
         FileProcessingService fileService = new FileProcessingService();
 
@@ -73,7 +72,7 @@ public class ProductService {
         List<Integer> productIds = new ArrayList<>();
         List<Integer> choseProductIds;
         String input;
-        System.out.println("Danh sach product:");
+        System.out.println("Fetching producty for category Id:" + categoryId);
         System.out.println("productId, categoryId, name, price");
 
         for (Product product : productList) {
@@ -83,7 +82,7 @@ public class ProductService {
         }
 
         while (true) {
-            System.out.print("Chon cac products hop le:");
+            System.out.print("Choose valid products:");
             input = scanner.nextLine();
             if (!input.isEmpty()) {
                 choseProductIds = Arrays.stream(input.split(",")).map(Integer::parseInt).collect(Collectors.toList());

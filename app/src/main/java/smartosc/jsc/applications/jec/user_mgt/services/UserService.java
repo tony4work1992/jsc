@@ -41,7 +41,7 @@ public class UserService {
         List<Integer> userIds = new ArrayList<>();
         String input;
         Integer userId;
-        System.out.println("Danh sach user:");
+        System.out.println("Fetching users:");
         System.out.println("userId, fullname, email");
         for (User user : userList) {
             userIds.add(user.getUserId());
@@ -49,7 +49,7 @@ public class UserService {
         }
 
         while (true) {
-            System.out.println("Chon 1 user hop le:");
+            System.out.println("Choose valid user");
             input = scanner.nextLine();
             if (!input.isEmpty()) {
                 userId = Integer.parseInt(input);

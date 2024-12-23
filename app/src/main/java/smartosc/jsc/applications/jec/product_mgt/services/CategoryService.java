@@ -40,7 +40,7 @@ public class CategoryService {
         List<Integer> categoryIds = new ArrayList<>();
         Integer categoryId;
         String input;
-        System.out.println("Danh sach category:");
+        System.out.println("Fetching category List");
 
         for (Category category : categoryList) {
             categoryIds.add(category.getCategoryId());
@@ -48,7 +48,7 @@ public class CategoryService {
         }
 
         while (true) {
-            System.out.println("Chon 1 category hop le:");
+            System.out.println("Choose valid category:");
             input = scanner.nextLine();
             if (!input.isEmpty()) {
                 categoryId = Integer.parseInt(input);

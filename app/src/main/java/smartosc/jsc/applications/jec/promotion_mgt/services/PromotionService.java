@@ -17,7 +17,6 @@ public class PromotionService {
         if (categoryId == null) {
             throw new IllegalArgumentException("Show ID cannot be null");
         }
-        System.out.println("Fetching promotions for show ID: " + categoryId);
         // Example: Fetch promotions for a specific show or event
         FileProcessingService fileService = new FileProcessingService();
 
@@ -70,7 +69,7 @@ public class PromotionService {
         List<Integer> promotionIds = new ArrayList<>();
         List<Integer> chosePromotionIds;
         String input;
-        System.out.println("Danh sach promotion:");
+        System.out.println("Fetching promotions for show ID: " + categoryId);
         System.out.println("promotionId, categoryId, discountType, discountAmount");
 
         for (Promotion promotion : promotionList) {
@@ -81,7 +80,7 @@ public class PromotionService {
         }
 
         while (true) {
-            System.out.print("Chon cac promotions hop le:");
+            System.out.print("Choose valid prodmotions:");
             input = scanner.nextLine();
             if (!input.isEmpty()) {
                 chosePromotionIds = Arrays.stream(input.split(",")).map(Integer::parseInt).collect(Collectors.toList());
