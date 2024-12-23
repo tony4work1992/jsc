@@ -1,0 +1,2 @@
+1,product name 1,description 1,100.0,100
+2,product name 2,description 2,3.0,100
