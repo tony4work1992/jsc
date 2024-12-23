@@ -1,0 +1,6 @@
+promotionId,categoryId,discountType,discountAmount
+1,1,by_percent,30
+2,1,flat_discount,16.00
+3,2,by_percent,11
+4,2,flat_discount,27.00
+5,2,by_percent,19

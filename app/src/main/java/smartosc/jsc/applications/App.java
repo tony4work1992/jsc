@@ -3,50 +3,51 @@
  */
 package smartosc.jsc.applications;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-
-import smartosc.jsc.applications.etl.ba_nodes.Executable;
-import smartosc.jsc.applications.etl.constants.FilePathConstants;
-import smartosc.jsc.applications.etl.mo_factory.EtlFactory;
+import smartosc.jsc.applications.jec.commands.services.CommandService;
 
 public class App {
 
-    public static void main(String[] args) {
+    // Etl app
+    // public static void main(String[] args) {
 
-        ObjectMapper mapper = new ObjectMapper();
+    // ObjectMapper mapper = new ObjectMapper();
 
-        try {
-            JsonNode config = mapper.readTree(new File(FilePathConstants.CONFIG_FILE_PATH));
-            Map<Integer, JsonNode> returnResult = new HashMap();
+    // try {
+    // JsonNode config = mapper.readTree(new
+    // File(FilePathConstants.CONFIG_FILE_PATH));
+    // Map<Integer, JsonNode> returnResult = new HashMap();
 
-            JsonNode nodes = config.get("nodes");
-            JsonNode parentData = mapper.createObjectNode();
-            EtlFactory etlFactory = new EtlFactory();
+    // JsonNode nodes = config.get("nodes");
+    // JsonNode parentData = mapper.createObjectNode();
+    // EtlFactory etlFactory = new EtlFactory();
 
-            for (JsonNode node : nodes) {
-                Integer id = node.get("id").asInt();
-                String name = node.get("name").asText();
-                String params = node.get("config").asText();
-                if (!node.get("parent").isEmpty()) {
-                    ArrayNode parentNodeIds = (ArrayNode) node.get("parent");
-                    Integer parentNodeId = parentNodeIds.get(0).asInt();
-                    parentData = returnResult.get(parentNodeId);
-                }
-                Executable executer = etlFactory.getExecuter(name, returnResult);
-                JsonNode result = executer.execute(params, parentData);
-                returnResult.put(id, result);
-            }
-            String unionString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnResult.get(8));
-            System.out.println("-----------Result--------------");
-            System.out.println(unionString);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    // for (JsonNode node : nodes) {
+    // Integer id = node.get("id").asInt();
+    // String name = node.get("name").asText();
+    // String params = node.get("config").asText();
+    // if (!node.get("parent").isEmpty()) {
+    // ArrayNode parentNodeIds = (ArrayNode) node.get("parent");
+    // Integer parentNodeId = parentNodeIds.get(0).asInt();
+    // parentData = returnResult.get(parentNodeId);
+    // }
+    // Executable executer = etlFactory.getExecuter(name, returnResult);
+    // JsonNode result = executer.execute(params, parentData);
+    // returnResult.put(id, result);
+    // }
+    // String unionString =
+    // mapper.writerWithDefaultPrettyPrinter().writeValueAsString(returnResult.get(8));
+    // System.out.println("-----------Result--------------");
+    // System.out.println(unionString);
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // }
+    // }
+
+    // Jec app
+    public static void main(String[] args) throws Exception {
+        ThreadLocal<String> temporaryData = new ThreadLocal<>();
+        CommandService commandService = new CommandService();
+        commandService.action();
+       
     }
 }

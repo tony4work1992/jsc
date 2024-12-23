@@ -1,0 +1,13 @@
+id,name
+1,Chon user
+2,Get Category List
+3,Get Products By Category id
+4,Get Product Detail
+5,Add Products To Cart
+6,Remove Products From Cart
+7,Get Promotion List
+8,Apply Promotion
+9,Create Order
+10,Cancel Order
+11,Refund Order
+12,Exit
