@@ -11,15 +11,15 @@ import java.util.Objects;
 public class GraphProcessor {
     private ArrayList<DataSet> dataSets = new ArrayList<>();
 
-    public AbstractInstruction processInstructionGraph(AbstractInstruction root, DataSet dataSet) {
+    public void processInstructionGraph(AbstractInstruction root, DataSet dataSet) {
         if (root == null) {
-            return null;
+            return;
         }
         System.out.println(root.getName());
 
         dataSet = EtlFactoryPool.getEtlFactory(root.getName()).createProcessor().execute(root, dataSet);
         if ((Objects.equals(root.getName(), EtlFactoryPool.UNION) && dataSet == null) || dataSet.getData().isEmpty()) {
-            return root;
+            return;
         }
         List<AbstractInstruction> children = root.getChildren();
         if (children.isEmpty()) {
@@ -28,8 +28,6 @@ public class GraphProcessor {
         for (AbstractInstruction child : children) {
             this.processInstructionGraph(child, dataSet);
         }
-
-        return root;
     }
 
     public ArrayList<DataSet> getDatasets() {

@@ -1,4 +1,4 @@
-package smartosc.jsc.applications;
+package smartosc.jsc.applications.etl;
 
 import java.util.ArrayList;
 import java.util.Map;
