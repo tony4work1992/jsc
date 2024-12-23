@@ -39,6 +39,7 @@ public class CategoryService {
         List<Category> categoryList = getCategoryList();
         List<Integer> categoryIds = new ArrayList<>();
         Integer categoryId;
+        String input;
         System.out.println("Danh sach category:");
 
         for (Category category : categoryList) {
@@ -48,10 +49,12 @@ public class CategoryService {
 
         while (true) {
             System.out.println("Chon 1 category hop le:");
-            categoryId = Integer.parseInt(scanner.nextLine());
-            if (categoryIds.contains(categoryId)) {
-                break;
-
+            input = scanner.nextLine();
+            if (!input.isEmpty()) {
+                categoryId = Integer.parseInt(input);
+                if (categoryIds.contains(categoryId)) {
+                    break;
+                }
             }
         }
 

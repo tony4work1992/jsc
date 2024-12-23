@@ -39,6 +39,7 @@ public class UserService {
     public Integer chooseUser(Scanner scanner) {
         List<User> userList = getUserList();
         List<Integer> userIds = new ArrayList<>();
+        String input;
         Integer userId;
         System.out.println("Danh sach user:");
         System.out.println("userId, fullname, email");
@@ -49,10 +50,12 @@ public class UserService {
 
         while (true) {
             System.out.println("Chon 1 user hop le:");
-            userId = Integer.parseInt(scanner.nextLine());
-            if (userIds.contains(userId)) {
-                break;
-
+            input = scanner.nextLine();
+            if (!input.isEmpty()) {
+                userId = Integer.parseInt(input);
+                if (userIds.contains(userId)) {
+                    break;
+                }
             }
         }
 

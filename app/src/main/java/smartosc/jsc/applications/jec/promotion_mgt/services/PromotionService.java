@@ -69,6 +69,7 @@ public class PromotionService {
         List<Promotion> promotionList = getPromotions(categoryId);
         List<Integer> promotionIds = new ArrayList<>();
         List<Integer> chosePromotionIds;
+        String input;
         System.out.println("Danh sach promotion:");
         System.out.println("promotionId, categoryId, discountType, discountAmount");
 
@@ -79,11 +80,16 @@ public class PromotionService {
                     + promotion.getDiscountAmount());
         }
 
-         while (true) {
+        while (true) {
             System.out.print("Chon cac promotions hop le:");
-            chosePromotionIds = Arrays.stream(scanner.nextLine().split(",")).map(Integer::parseInt).collect(Collectors.toList());
-            if (promotionIds.containsAll(chosePromotionIds)) {
-                break;
+            input = scanner.nextLine();
+            if (!input.isEmpty()) {
+                chosePromotionIds = Arrays.stream(input.split(",")).map(Integer::parseInt).collect(Collectors.toList());
+                if (promotionIds.containsAll(chosePromotionIds)) {
+                    break;
+
+                }
+
             }
         }
         return chosePromotionIds;

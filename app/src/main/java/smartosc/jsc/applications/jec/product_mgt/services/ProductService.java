@@ -73,6 +73,7 @@ public class ProductService {
         List<Product> productList = getProductsByCategory(categoryId);
         List<Integer> productIds = new ArrayList<>();
         List<Integer> choseProductIds;
+        String input;
         System.out.println("Danh sach product:");
         System.out.println("productId, categoryId, name, price");
 
@@ -84,11 +85,15 @@ public class ProductService {
 
         while (true) {
             System.out.print("Chon cac products hop le:");
-            choseProductIds = Arrays.stream(scanner.nextLine().split(",")).map(Integer::parseInt).collect(Collectors.toList());
-            if (productIds.containsAll(choseProductIds)) {
-                break;
+            input = scanner.nextLine();
+            if (!input.isEmpty()) {
+                choseProductIds = Arrays.stream(input.split(",")).map(Integer::parseInt).collect(Collectors.toList());
+                if (productIds.containsAll(choseProductIds)) {
+                    break;
+                }
             }
         }
+
         return choseProductIds;
     }
 }

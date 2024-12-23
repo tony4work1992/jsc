@@ -49,36 +49,37 @@ public class FileProcessingService {
     }
 
     public String saveOrder(Order order) {
-        Integer orderId = order.getOrderId();
         String filePath = OUTPUT_FOLDER_PATH;
-        String[] headers = { "orderId", "ProductName", "Price", "Email" };
+        Integer orderId = order.getOrderId();
         UserService userService = new UserService();
         User user = userService.getUserDetail(order.getUserId());
         String email = user.getEmail();
-        File file = new File(filePath);
-        try {
-            if (file.exists()) {
-            } else {
-                // Tạo thư mục cha nếu chưa tồn tại
-                if (!file.getParentFile().exists()) {
-                    file.getParentFile().mkdirs();
-                }
-                file.createNewFile();
-            }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file.getPath()));
-            writer.write("Order ID,Product Name,Price, Customer Email");
-            writer.newLine();
+        Boolean newFile = false;
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            // Tạo thư mục cha nếu chưa tồn tại
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+            newFile = true;
+        }
+        // Mở file với chế độ append = true
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            if (newFile) {
+                writer.write("Order ID,Product Name,Price,Customer Email\n");
+            }
             List<Product> products = order.getProducts();
 
             for (Product product : products) {
-                writer.write(orderId + "," + product.getName() + "," + product.getPrice() + "," + email);
-                writer.newLine();
+                writer.write(orderId + "," + product.getName() + "," + product.getPrice() +
+                        "," + email + "\n");
             }
-
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Đã xảy ra lỗi: " + e.getMessage());
         }
         return filePath;
+
     }
 }

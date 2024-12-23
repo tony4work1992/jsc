@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import smartosc.jsc.applications.jec.cart_mgt.models.Cart;
 import smartosc.jsc.applications.jec.cart_mgt.services.CartService;
-import smartosc.jsc.applications.jec.commands.models.Command;
 import smartosc.jsc.applications.jec.file_handling.services.FileProcessingService;
 import smartosc.jsc.applications.jec.order_mgt.models.Order;
 import smartosc.jsc.applications.jec.order_mgt.services.OrderService;
@@ -18,40 +17,7 @@ import smartosc.jsc.applications.jec.promotion_mgt.services.PromotionService;
 import smartosc.jsc.applications.jec.user_mgt.services.UserService;
 
 public class CommandService {
-    public static final String SOURCE = "app/src/main/java/smartosc/jsc/applications/jec/resources/commands.csv";
-    private final Map<String, String> tempData = new HashMap<>();
-
-    public void storeData(String key, String value) {
-        tempData.put(key, value);
-    }
-
-    public String retrieveData(String key) {
-        return tempData.get(key);
-    }
-
-    public List<Command> getCommandList() {
-        // Simulate fetching categories
-
-        FileProcessingService fileService = new FileProcessingService();
-
-        List<Map<String, String>> commandList = fileService.readCsvWithHeaders(SOURCE);
-        return commandList.stream()
-                .map(item -> {
-                    return this.convert(item);
-                })
-                .collect(Collectors.toList());
-
-        // Example: Fetch from database or any data source
-    }
-
-    public Command convert(Map<String, String> data) {
-        Command command = new Command();
-        command.setId(Integer.parseInt(data.get("id")));
-        command.setName(data.get("name"));
-
-        return command;
-    }
-
+  
     public void action() {
         Integer userId ;
         Integer categoryId ;

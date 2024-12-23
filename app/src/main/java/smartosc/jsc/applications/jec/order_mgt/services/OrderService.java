@@ -1,6 +1,7 @@
 package smartosc.jsc.applications.jec.order_mgt.services;
 
 import java.util.List;
+import java.util.Random;
 
 import smartosc.jsc.applications.jec.cart_mgt.models.Cart;
 import smartosc.jsc.applications.jec.order_mgt.models.Order;
@@ -14,7 +15,8 @@ public class OrderService {
             throw new IllegalArgumentException("Product list cannot be null or empty");
         }
         Order order = new Order();
-        order.setOrderId((int)Math.random() * 10);
+        Random rand = new Random();
+        order.setOrderId(rand.nextInt(1000));
         order.setProducts(products);
         order.setAmount(cart.getAmount());
         order.setUserId(cart.getUserId());
