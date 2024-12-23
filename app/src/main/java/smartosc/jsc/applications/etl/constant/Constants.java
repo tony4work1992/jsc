@@ -1,0 +1,23 @@
+package smartosc.jsc.applications.etl.constant;
+
+public final class Constants {
+
+    private Constants() {
+        throw new AssertionError("Cannot instantiate Constants class");
+    }
+
+    public static final String OPERATOR_EQUALS = "=";
+    public static final String OPERATOR_GREATER_THAN = ">";
+    public static final String OPERATOR_LESS_THAN = "<";
+    public static final String OPERATOR_CONTAINS = "contains";
+    public static final String OPERATOR_NOT_CONTAINS = "not_contains";
+
+    public static final String ADD_COLUMNS = "addColumns";
+    public static final String FILTER_COLUMNS = "filterColumns";
+    public static final String CONCAT_COLUMNS = "concatColumns";
+    public static final String RENAME_COLUMNS = "renameColumns";
+    public static final String REMOVE_COLUMNS = "removeColumns";
+    public static final String UNION_COLUMNS = "unionColumns";
+    public static final String LOAD_DATA = "loadData";
+    public static final String DATASET = "[{\"sku\":\"EXAM.SKU.01\",\"title\":\"Smart Tivi 4K\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.02\",\"title\":\"Smart Tivi 4K Untra Width\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.03\",\"title\":\"Smart Tivi 2K\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.04\",\"title\":\"Smart Tivi 2K Untra Width\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.05\",\"title\":\"Smart Tivi 8K\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.06\",\"title\":\"Smart Tivi 8K Untra Width\",\"width\":120,\"height\":40,\"category\":\"TIVI\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.07\",\"title\":\"Projector 4K\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.08\",\"title\":\"Projector 4K Untra Width\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.09\",\"title\":\"Projector 2K\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.10\",\"title\":\"Projector 2K Untra Width\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.11\",\"title\":\"Projector 8K\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.12\",\"title\":\"Projector 8K Untra Width\",\"width\":20,\"height\":30,\"category\":\"Projector\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.13\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"UK\"},{\"sku\":\"EXAM.SKU.14\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"UK\"},{\"sku\":\"EXAM.SKU.15\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"UK\"},{\"sku\":\"EXAM.SKU.16\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"UK\"},{\"sku\":\"EXAM.SKU.17\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.18\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.19\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.20\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.21\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"},{\"sku\":\"EXAM.SKU.22\",\"title\":\"Soundbar Bluetooth A\",\"width\":140,\"height\":15,\"category\":\"Soundbar\",\"image\":\"https://lg.com/sku/\",\"country\":\"VN\"}]";
+}
