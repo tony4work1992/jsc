@@ -2,8 +2,10 @@ import dtos.OrderDto;
 import entitites.Order;
 import enums.OrderStatus;
 import services.IOrderService;
+import services.IProductService;
 import services.IPromotionService;
 import services.impls.OrderServiceImpl;
+import services.impls.ProductServiceImpl;
 import services.impls.PromotionServiceImpl;
 
 import java.io.IOException;
@@ -14,7 +16,8 @@ public class OrderApplication {
     public static void main(String[] args) throws IOException {
         // Tạo đối tượng IOrderService để sử dụng các phương thức
         IPromotionService promotionService = new PromotionServiceImpl();
-        IOrderService orderService = new OrderServiceImpl(promotionService);
+        IProductService productService = new ProductServiceImpl();
+        IOrderService orderService = new OrderServiceImpl(promotionService,productService);
 
         // 1. Tạo đơn hàng mới
         OrderDto newOrderDto = new OrderDto();
@@ -22,6 +25,7 @@ public class OrderApplication {
         newOrderDto.setCustomerContact("123456789");
         newOrderDto.setPromotionId(1L);
         newOrderDto.setTotalPrice(150.0);
+        newOrderDto.setProductIds(List.of(2L));
         newOrderDto.setStatus(OrderStatus.PENDING); // Trạng thái mặc định là PENDING
 
         Order newOrder = orderService.createOrder(newOrderDto);

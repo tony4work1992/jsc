@@ -3,6 +3,7 @@ package dtos;
 import enums.OrderStatus;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class OrderDto  implements Serializable {
     private Long id;
@@ -12,6 +13,16 @@ public class OrderDto  implements Serializable {
     private double totalPrice;
     private OrderStatus status; // Pending, Shipped, Delivered
     private String promotionCode;
+    private List<Long> productIds;
+    
+    public List<Long> getProductIds() {
+        return productIds;
+    }
+    
+    public void setProductIds(List<Long> productIds) {
+        this.productIds = productIds;
+    }
+    
 
     public String getPromotionCode() {
         return promotionCode;

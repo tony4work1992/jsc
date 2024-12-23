@@ -2,10 +2,12 @@ package services.impls;
 
 import dtos.OrderDto;
 import entitites.Order;
+import entitites.Product;
 import entitites.Promotion;
 import enums.OrderStatus;
 import enums.PromotionType;
 import services.IOrderService;
+import services.IProductService;
 import services.IPromotionService;
 import utils.FileUtil;
 
@@ -13,24 +15,30 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class OrderServiceImpl implements IOrderService {
 
     private static final String JSON_FILE_PATH = "orders.json";
 
     private final IPromotionService promotionService;
+    private final IProductService productService;
 
     // Constructor Injection
-    public OrderServiceImpl(IPromotionService promotionService) {
+    public OrderServiceImpl(IPromotionService promotionService, IProductService productService) {
         this.promotionService = promotionService;
+        this.productService = productService;
     }
 
     @Override
     // Phương thức tạo đơn hàng
     public Order createOrder(OrderDto orderDto) throws IOException {
         List<Promotion> promotions = promotionService.listPromotions();
+        List<Product> products = productService.listProducts().stream()
+                .filter(product -> orderDto.getProductIds().contains(product.getId()))
+                .collect(Collectors.toList());
         Promotion selectedPromotion = null;
-
+        
         // Kiểm tra và lấy thông tin khuyến mãi nếu mã hợp lệ
         for (Promotion promotion : promotions) {
             if (promotion.getCode().equals(orderDto.getPromotionCode())) {
@@ -41,6 +49,9 @@ public class OrderServiceImpl implements IOrderService {
 
         // Tính tổng tiền
         double totalPrice = 0;
+        for(Product product: products){
+            totalPrice+= product.getPrice();
+        }
         if (selectedPromotion != null) {
             if (selectedPromotion.getPromotionType() == PromotionType.PERCENTAGE) {
                 totalPrice *= (1 - selectedPromotion.getValue() / 100); // Giảm giá theo tỷ lệ phần trăm
