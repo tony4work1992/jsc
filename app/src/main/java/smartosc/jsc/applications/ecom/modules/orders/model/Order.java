@@ -1,4 +1,4 @@
-package smartosc.jsc.applications.ecom.modules.orders;
+package smartosc.jsc.applications.ecom.modules.orders.model;
 
 public class Order{
     public static final String TABLE_NAME = "orders";

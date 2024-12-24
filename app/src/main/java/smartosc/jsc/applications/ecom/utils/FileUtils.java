@@ -12,6 +12,9 @@ public class FileUtils {
 
     public static String readFromFile(String fileName) throws IOException {
         StringBuilder content = new StringBuilder();
+        File file = new File(fileName);
+        file.createNewFile();
+
         FileReader fileReader = new FileReader(fileName);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line;

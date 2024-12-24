@@ -6,10 +6,10 @@ import smartosc.jsc.applications.ecom.modules.products.repository.ProductFileRep
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
+
+import static smartosc.jsc.applications.ecom.modules.core.MainMenu.scanner;
 
 public class ProductAction extends AbstractAction {
-    private static final Scanner scanner = new Scanner(System.in);
 
     private ProductFileRepository productFileRepository = new ProductFileRepository();
     public void execute() throws IOException {

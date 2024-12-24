@@ -1,9 +1,17 @@
-package smartosc.jsc.applications.ecom.modules.customers;
+package smartosc.jsc.applications.ecom.modules.customers.model;
 
 public class Customer {
     public static final String TABLE_NAME = "customers";
 
-    public static final String ENTITY_ID = "customer_id";
+    public static final String CUSTOMER_ID = "customer_id";
+
+    public static final String NAME = "name";
+
+    public static final String EMAIL = "email";
+
+    public static final String ADDRESS = "address";
+
+    protected String id;
 
     protected String name;
 
@@ -11,7 +19,12 @@ public class Customer {
 
     protected String address;
 
-    public Customer() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -37,4 +50,5 @@ public class Customer {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }
