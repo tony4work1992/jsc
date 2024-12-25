@@ -67,7 +67,7 @@ public class ProductFileRepository implements ProductRepositoryInterface {
         allProducts = this.getAll();
         Map<String, Product> allProductsMap = this.getAllProductsMap(allProducts);
         product = allProductsMap.get(id);
-        if(product == null) {
+        if (product == null) {
             product = new Product();
         }
         return product;
@@ -75,9 +75,15 @@ public class ProductFileRepository implements ProductRepositoryInterface {
 
     @Override
     public List<Product> getAll() throws IOException {
-        if(this.allProducts == null || this.needLatestData) {
+        if (this.allProducts == null || this.needLatestData) {
             String productJsonContent = FileUtils.readFromFile(PRODUCT_FILE);
             ObjectMapper objectMapper = new ObjectMapper();
+
+            if (productJsonContent.isEmpty()) {
+                this.allProducts = new ArrayList<>();
+                this.needLatestData = false;
+                return this.allProducts;
+            }
 
             this.allProducts = objectMapper.readValue(productJsonContent, new TypeReference<>() {
             });

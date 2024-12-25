@@ -1,12 +1,21 @@
 package smartosc.jsc.applications.ecom.modules.orders.model;
 
 public class OrderItem {
+    public static final String TABLE_NAME = "order_items";
+
     private String id;
     private String orderId;
     private String productId;
     private String name;
     private int quantity;
     private double price;
+
+    public OrderItem( String productId, String name, int quantity, double price) {
+        this.productId = productId;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+    }
 
     public String getId() {
         return id;

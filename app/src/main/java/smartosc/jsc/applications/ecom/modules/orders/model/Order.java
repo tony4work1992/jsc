@@ -5,7 +5,8 @@ public class Order{
 
     public static final String ENTITY_ID = "order_id";
 
-    protected String customerId;
+    protected String id;
+    protected String customerEmail;
 
     protected String totalPrice;
 
@@ -13,15 +14,18 @@ public class Order{
 
     protected String promotionIds;
 
-    public Order() {
+    public Order(String customerEmail, String status, String totalPrice) {
+        this.customerEmail = customerEmail;
+        this.status = status;
+        this.totalPrice = totalPrice;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 
     public String getTotalPrice() {
@@ -46,5 +50,13 @@ public class Order{
 
     public void setPromotionIds(String promotionIds) {
         this.promotionIds = promotionIds;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

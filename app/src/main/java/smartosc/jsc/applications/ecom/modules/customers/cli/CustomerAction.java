@@ -1,9 +1,7 @@
 package smartosc.jsc.applications.ecom.modules.customers.cli;
 
 import smartosc.jsc.applications.ecom.modules.core.AbstractAction;
-import smartosc.jsc.applications.ecom.modules.customers.model.Customer;
-import smartosc.jsc.applications.ecom.modules.customers.repository.CustomerFileRepository;
-import smartosc.jsc.applications.ecom.modules.customers.repository.CustomerRepositoryInterface;
+import smartosc.jsc.applications.ecom.modules.customers.model.Session;
 
 import java.io.IOException;
 
@@ -14,20 +12,18 @@ public class CustomerAction extends AbstractAction {
 
     @Override
     public void execute() throws IOException {
+        Session customerSession = Session.getCustomerSession();
         // Enter you name
         System.out.println("Enter your name: ");
         String name = scanner.nextLine();
+        customerSession.set("name", name);
         // Enter your email
         System.out.println("Enter your email: ");
         String email = scanner.nextLine();
+        customerSession.set("email", email);
         // Enter your address
         System.out.println("Enter your address: ");
         String address = scanner.nextLine();
-        Customer customer = new Customer();
-        customer.setAddress(address);
-        customer.setEmail(email);
-        customer.setName(name);
-
-
+        customerSession.set("address", address);
     }
 }
